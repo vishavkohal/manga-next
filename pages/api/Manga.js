@@ -5,15 +5,21 @@ import urlModule from 'url';
 import cheerio from 'cheerio';
 
 const url = 'https://ww7.mangakakalot.tv';
-
+let type = 'all';
 
 // The API handler function
 export default async function handler(req, res) {
     let page = parseInt(req.query.page) || 1; // Retrieve the 'page' query parameter
     if (page < 1) page = 1;
-
+   
+    if (!(req.query.type || "").trim()) {
+        
+    } else {
+        type= req.query.type;
+    }
+    
     try {
-        const response = await axios.get(`${url}/manga_list/?type=latest&category=all&state=all&page=${page}`);
+        const response = await axios.get(`${url}/manga_list/?type=latest&category=${type}&state=all&page=${page}`);
         if (response.status === 200) {
             const html = response.data;
             const $ = cheerio.load(html);
@@ -38,10 +44,13 @@ export default async function handler(req, res) {
             const parsedUrl = urlModule.parse(totalPage, true);
             const pageNumber = parsedUrl.query.page; // Assuming 'page' is a query parameter in the 'totalPage' URL
 
-            results.push({ 'page': currentPage, 'totalPage': pageNumber });
+            const result = {
+                results, // Array of the manga details
+                page: page.toString(), // Current Page
+                totalPage: pageNumber // Total pages
+            };
 
-            // Return results as JSON
-            res.status(200).json({ results });
+            res.status(200).json(result);
         }
     } catch (error) {
         console.error(`Caught an error: ${error.message}`);

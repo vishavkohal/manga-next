@@ -73,25 +73,27 @@ export default function MangaInfo() {
             />
           </Card>
         </Grid>
-        <Grid item xs={12} md={8} style={{paddingInline:'30px'}}>
-        <Typography variant="h3" gutterBottom>{mangaDetails.title}</Typography>
-          <Typography variant="body1">Alternative Titles: {mangaDetails.alternative.join(', ')}</Typography>
-          <Typography variant="body1">Authors: {mangaDetails.authors.join(', ')}</Typography>
-          <Typography variant="body1">Status: {mangaDetails.status}</Typography>
-          <Typography variant="body1">Last Updated: {mangaDetails.lastUpdate}</Typography>
-          <Typography variant="body1">Views: {mangaDetails.view}</Typography>
-          <Typography variant="body1">Rating: {mangaDetails.rate}</Typography>
-          <Typography variant="body1">Votes: {mangaDetails.votes}</Typography>
-          <Typography variant="body1">Summary: {mangaDetails.summary}</Typography>
-          <Typography variant="body1" gutterBottom>Genres:</Typography>
-          <Grid container spacing={1}>
-            {mangaDetails.genres.map((genre, index) => (
-              <Grid item key={index}>
+        
+        <Grid item xs={12} md={8} sx={{ paddingInline: { xs: '0px', md: '50px' }}}>
+    <Typography variant="h3" gutterBottom>{mangaDetails.title}</Typography>
+    <Typography variant="body1">Alternative Titles: {mangaDetails.alternative.join(', ')}</Typography>
+    <Typography variant="body1">Authors: {mangaDetails.authors.join(', ')}</Typography>
+    <Typography variant="body1">Status: {mangaDetails.status}</Typography>
+    <Typography variant="body1">Last Updated: {mangaDetails.lastUpdate}</Typography>
+    <Typography variant="body1">Views: {mangaDetails.view}</Typography>
+    <Typography variant="body1">Rating: {mangaDetails.rate}</Typography>
+    <Typography variant="body1">Votes: {mangaDetails.votes}</Typography>
+    <Typography variant="body1">Summary: {mangaDetails.summary}</Typography>
+    <Typography variant="body1" gutterBottom>Genres:</Typography>
+    <Grid container spacing={1}>
+        {mangaDetails.genres.map((genre, index) => (
+            <Grid item key={index}>
                 <Chip label={genre} />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
+            </Grid>
+        ))}
+    </Grid>
+</Grid>
+
       </Grid>
 
       <Grid container spacing={2} alignItems="center" className="pt-8">
