@@ -114,10 +114,10 @@ const MangaSearch = () => {
                         </Grid>
                     </Box>
 
-                    <Grid container spacing={4}>
+                    <Grid container spacing={3}>
                     {results.map((manga, index) => (
-                <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-                    <Card className="flex flex-col overflow-hidden shadow-lg transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl rounded-lg h-full bg-deepdark text-white">
+                 <Grid key={index} item xs={12} sm={6} md={4} lg={3} className="hover:scale-105 transition-transform duration-200">
+                 <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#070c13' }}>
                         <CardMedia
                             component="img"
                             image={manga.img}
@@ -125,19 +125,23 @@ const MangaSearch = () => {
                             className="w-full"
                             style={{ height: '250px', objectFit: 'cover' }}
                         />
-                        <CardContent className="px-6 py-4 flex-grow flex flex-col justify-between">
-                            <Box>
+                        <CardContent>
+                            <Box >
                             <Typography
   gutterBottom
   variant="h5"
-  component="div"
-  className="font-bold text-xl mb-2 cursor-pointer" // Adding cursor-pointer for visual feedback
+                      component="div"
+                      className="font-bold text-xl mb-2 cursor-pointer" color="white" // Adding cursor-pointer for visual feedback
   onClick={() => handleClick(manga.id)} // Attaching the onClick event
 >
   {manga.title}
 </Typography>
-                                <span className=" text-gray-500 mr-2 mb-2">Updated: {manga.update}</span>
-                                <span className="text-gray-500 mr-2 mb-2">Views: {manga.view}</span>
+<Typography variant="body2" color="grey" flexGrow={1} mr={1} noWrap>
+Updated: {manga.update}
+<br></br>
+Views: {manga.view}
+</Typography>
+
                             </Box>
                         </CardContent>
                     </Card>
