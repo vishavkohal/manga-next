@@ -63,8 +63,8 @@ function MangaChapterViewer() {
         }}>
          
             <Box textAlign="center" my={2} padding={'20px'}>
-                {prevChapter && <Button variant="contained" onClick={() => navigateToChapter(prevChapter)} sx={{ mr: '10px', float:'left' }}>Previous</Button>}
-                {nextChapter && <Button variant="contained" onClick={() => navigateToChapter(nextChapter)} sx={{ mr: '10px', float:'right' }}>Next</Button>}
+                {prevChapter && <Button variant="outlined" onClick={() => navigateToChapter(prevChapter)} sx={{ mr: '10px', float:'left', borderRadius:'20px' }}>Previous</Button>}
+                {nextChapter && <Button variant="outlined" onClick={() => navigateToChapter(nextChapter)} sx={{ mr: '10px', float:'right',borderRadius:'20px' }}>Next</Button>}
             </Box>
             <Typography variant="h4" component="h1" textAlign="center" mb={8} fontWeight="bold" color="whitesmoke">
                 {chapterData.title}
@@ -75,11 +75,14 @@ function MangaChapterViewer() {
                 ))}
             </div>
             
-            <Box textAlign="center" my={2} sx={{ paddingBottom: '20px' }}>
-                {prevChapter && <Button variant="contained" onClick={() => navigateToChapter(prevChapter)} sx={{ mr: '10px', float: 'left' }}>Previous</Button>}
-                {nextChapter && <Button variant="contained" onClick={() => navigateToChapter(nextChapter)} sx={{ mr: '10px', float: 'right' }}>Next</Button>}
+            <div style={{ backgroundColor: '#070c13' }}>
+        <Box textAlign="center" my={2} sx={{ padding: '50px' }}>
+                {prevChapter && <Button variant="outlined" onClick={() => navigateToChapter(prevChapter)} sx={{ mr: '10px', float: 'left',borderRadius:'20px' }}>Previous</Button>}
+                {nextChapter && <Button variant="outlined"onClick={() => navigateToChapter(nextChapter)} sx={{ mr: '10px', float: 'right' ,borderRadius:'20px'}}>Next</Button>}
             </Box>
+        </div>
         </Container>
+       
         </div>
     );
 }
