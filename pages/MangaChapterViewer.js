@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { Box, Typography, CircularProgress, Button, Container } from '@mui/material';
-
+import Navbar from '../pages/data/NavBar'
 function MangaChapterViewer() {
     const [chapterData, setChapterData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -52,6 +52,7 @@ function MangaChapterViewer() {
 
     return (
         <div style={{ backgroundColor: '#070c13' }}>
+              <Navbar/>
         <Container maxWidth="lg" sx={{
             backgroundColor: '#070c13', 
             color: 'white', 
@@ -60,7 +61,7 @@ function MangaChapterViewer() {
                 p: 0, // Remove padding on small screens
             }
         }}>
-           
+         
             <Box textAlign="center" my={2} padding={'20px'}>
                 {prevChapter && <Button variant="contained" onClick={() => navigateToChapter(prevChapter)} sx={{ mr: '10px', float:'left' }}>Previous</Button>}
                 {nextChapter && <Button variant="contained" onClick={() => navigateToChapter(nextChapter)} sx={{ mr: '10px', float:'right' }}>Next</Button>}

@@ -83,10 +83,26 @@ const handleSearch = (e) => {
 
 
 
+  const handleLatestMangaClick = (event) => {
+    const latestMangaPath = '/latestmanga';
+    
+        router.push({
+          pathname: latestMangaPath,
+          query: 
+          {
+            type:'all'
+          }
+          
+        }, undefined, { shallow: false });
+      };
 
-
+   
+        // Navigate to the Latest Manga page if on a different page
+      
 
   
+
+ 
   const drawer = (
     <Box
       sx={{ width: drawerWidth, bgcolor: 'black' }}
@@ -98,16 +114,26 @@ const handleSearch = (e) => {
         MangaZone
       </Typography>
       <List>
-        {navItems.map((item) => (
-          <Link key={item} href={`/${item.replace(/\s+/g, '').toLowerCase()}`} passHref>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary={item} primaryTypographyProps={{ style: { color: 'white' } }} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        ))}
-      </List>
+  {navItems.map((item) => (
+    // Checks if the item is "Latest Manga" to add special behavior
+    item === 'Latest Manga' ? (
+      <ListItem disablePadding key={item}>
+        <ListItemButton onClick={() => handleLatestMangaClick()}>
+          <ListItemText primary={item} primaryTypographyProps={{ style: { color: 'white' } }} />
+        </ListItemButton>
+      </ListItem>
+    ) : (
+      // Original Link component for other items
+      <Link key={item} href={`/${item.replace(/\s+/g, '').toLowerCase()}`} passHref>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemText primary={item} primaryTypographyProps={{ style: { color: 'white' } }} />
+          </ListItemButton>
+        </ListItem>
+      </Link>
+    )
+  ))}
+</List>
     </Box>
   );
 
@@ -147,14 +173,21 @@ const handleSearch = (e) => {
           </Typography>
          
           <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1 }}>
-            {navItems.map((item) => (
-              <Link key={item} href={`/${item.replace(/\s+/g, '').toLowerCase()}`} passHref>
-                <Button sx={{ color: '#fff', mx: 2, '&:hover': { backgroundColor: alpha('#ffffff', 0.25) } }}>
-                  {item}
-                </Button>
-              </Link>
-            ))}
-          </Box>
+  {navItems.map((item) => (
+    item === 'Latest Manga' ? (
+      <Button key={item} onClick={() => handleLatestMangaClick()} sx={{ color: '#fff', mx: 2, '&:hover': { backgroundColor: alpha('#ffffff', 0.25) } }}>
+        {item}
+      </Button>
+    ) : (
+      <Link key={item} href={`/${item.replace(/\s+/g, '').toLowerCase()}`} passHref>
+        <Button sx={{ color: '#fff', mx: 2, '&:hover': { backgroundColor: alpha('#ffffff', 0.25) } }}>
+          {item}
+        </Button>
+      </Link>
+    )
+  ))}
+</Box>
+
           <form onSubmit={handleSearch} style={{ marginRight: '0' }}>
           <Search style={{marginRight:'0'}}>
             <SearchIconWrapper>
